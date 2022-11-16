@@ -1,15 +1,15 @@
-import React, {useMemo} from 'react';
+import React, { useEffect, useMemo } from "react";
+import { CountryManager } from "./components/CountryManager";
 
-import {Task} from './models/Task';
-import {TaskRealmContext} from './models';
-import {TaskManager} from './components/TaskManager';
+import { CountryRealmContext } from "./models";
+import { Country } from "./models/Country";
 
-const {useQuery} = TaskRealmContext;
+const { useQuery } = CountryRealmContext;
 
 export const AppNonSync = () => {
-  const result = useQuery(Task);
+  const result = useQuery(Country);
 
-  const tasks = useMemo(() => result.sorted('createdAt'), [result]);
+  const countries = useMemo(() => result, [result]);
 
-  return <TaskManager tasks={tasks} />;
+  return <CountryManager countries={countries} />;
 };
